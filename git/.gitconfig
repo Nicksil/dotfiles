@@ -1,0 +1,16 @@
+[user]
+	email = nicksil@gmail.com
+	name = Nick Silvester
+[core]
+	editor = vim
+[diff]
+	indentHeuristic = on
+[alias]
+	a = add -A
+	br = branch
+	cm = commit -m
+	co = checkout
+	cob = checkout -b
+	s = status
+[color]
+	ui = true
