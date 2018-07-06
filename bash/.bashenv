@@ -1,0 +1,23 @@
+if [[ "$LANG" != "en_US.UTF-8" ]]; then
+    if [ "$(LANG=en_US.UTF-8 locale charmap 2>/dev/null)" = "UTF-8" ]; then
+        export LANG=en_US.UTF-8
+    else
+        export LANG=C
+    fi
+fi
+
+for p in $HOME/bin; do
+    if [[ :"$PATH": != *:"$p":* && -d "$p" ]]; then
+        PATH="$p:$PATH"
+    fi
+done
+
+unset p
+
+HISTCONTROL=ignoredups
+HISTSIZE=12000
+export HOMEBREW_NO_ANALYTICS=1
+export LC_COLLATE=C
+export PYTHONDONTWRITEBYTECODE=1
+export VIRTUALENVWRAPPER_PYTHON="$(which python3)"
+export WORKON_HOME=$HOME/.virtualenvs
