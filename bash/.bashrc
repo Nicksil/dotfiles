@@ -8,6 +8,7 @@ source "$HOME/.bashenv"
 alias ll="/bin/ls -alF"
 alias la="/bin/ls -A"
 alias l="/bin/ls -CF"
+alias untar='tar -zxvf'
 
 shopt -s cdspell
 shopt -s checkwinsize
