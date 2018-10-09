@@ -5,6 +5,7 @@ esac
 
 source "$HOME/.bashenv"
 
+alias busy="cat /dev/urandom | hexdump -C | grep 'ca fe'"
 alias ll="/bin/ls -alF"
 alias la="/bin/ls -A"
 alias l="/bin/ls -CF"
@@ -34,6 +35,7 @@ if [ -t 0 ]; then
     stty -ixon
 fi
 
+# Find (and source) bash completions
 if ! shopt -oq posix; then
     if [ -f /usr/share/bash-completion/bash_completion ]; then
         source /usr/share/bash-completion/bash_completion
@@ -44,6 +46,27 @@ if ! shopt -oq posix; then
     fi
 fi
 
+extract () {
+    if [ -f "${1}" ]; then
+        case "${1}" in
+            *.tar.bz2)   tar xvjf "${1}"  ;;
+            *.tar.gz)    tar xvzf "${1}"  ;;
+            *.bz2)       bunzip2 "${1}"   ;;
+            *.rar)       unrar x "${1}"   ;;
+            *.gz)        gunzip "${1}"    ;;
+            *.tar)       tar xvf "${1}"   ;;
+            *.tbz2)      tar xvjf "${1}"  ;;
+            *.tgz)       tar xvzf "${1}"  ;;
+            *.zip)       unzip "${1}"     ;;
+            *.Z)         uncompress "${1}";;
+            *.7z)        7z x "${1}"      ;;
+            *) echo "don't know how to extract '$1'...";;
+        esac
+    else
+        echo "'$1' is not a valid file!"
+    fi
+}
+
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
@@ -51,18 +74,6 @@ parse_git_branch() {
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
 esac
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-        echo "color support"
-        # We have color support; assume it's compliant with Ecma-48
-        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-        # a case would tend to support setf rather than setaf.)
-        color_prompt=yes
-    else
-        color_prompt=
-    fi
-fi
 
 if [ "$color_prompt" = yes ]; then
     PS1="\u@\h \w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
