@@ -14,11 +14,12 @@ done
 
 unset p
 
-VIRTUALENVWRAPPER_PYTHON="$(command -v python3)"
+export VIRTUALENVWRAPPER_PYTHON="$(command -v python3)"
 export GREP_OPTIONS='--color=auto'
 export HISTCONTROL=ignoredups
 export HISTSIZE=12000
 export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_INSTALL_CLEANUP=1
 export LC_COLLATE=C
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;31m'
