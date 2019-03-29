@@ -6,6 +6,11 @@ esac
 source "$HOME/.bashenv"
 
 alias busy="cat /dev/urandom | hexdump -C | grep 'ca fe'"
+# grep/GNU grep has deprecated the use of GREP_OPTIONS.
+# The following replaces `export GREP_OPTIONS='--color=auto'`
+alias grep="grep --color=auto"
+# The following supresses the deprecation message.
+unset GREP_OPTIONS
 alias ll="/bin/ls -alF"
 alias la="/bin/ls -A"
 alias l="/bin/ls -CF"
