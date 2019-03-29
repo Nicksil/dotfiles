@@ -14,6 +14,9 @@ done
 
 unset p
 
+# Prefer GNU tools if installed
+PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+
 export VIRTUALENVWRAPPER_PYTHON="$(command -v python3)"
 export GREP_OPTIONS='--color=auto'
 export HISTCONTROL=ignoredups
