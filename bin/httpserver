@@ -12,9 +12,7 @@ from http.server import SimpleHTTPRequestHandler
 def main():
     if len(sys.argv) > 1:
         os.chdir(sys.argv[1])
-
     port = 8002
-
     while True:
         try:
             server_address = ('', port)
@@ -23,17 +21,13 @@ def main():
             port += 1
         else:
             break
-
     print('Serving HTTP on', server_address[0], 'port', server_address[1])
-
     url = 'http://localhost:{}'.format(port)
     webbrowser.open(url)
-
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
         pass
-
     print('Exiting')
 
 if __name__ == '__main__':
