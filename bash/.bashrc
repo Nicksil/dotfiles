@@ -48,6 +48,10 @@ if ! shopt -oq posix; then
         source /etc/bash_completion
     elif [ -f /usr/local/etc/bash_completion ]; then
         source /usr/local/etc/bash_completion
+    elif [ -d /usr/local/etc/bash_completion.d ]; then
+        for i in /usr/local/etc/bash_completion.d/*; do
+            . "${i}"
+        done
     fi
 fi
 
