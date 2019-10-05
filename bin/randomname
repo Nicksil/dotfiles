@@ -1,0 +1,11 @@
+#!/usr/bin/env python3
+import random
+
+names = []
+with open('/usr/share/dict/propernames', mode='rt') as f:
+    for line in f:
+        line = line.strip()
+        if len(line) > 2:
+            names.append(line)
+
+print(f'{random.choice(names)} {random.choice(names)}')
